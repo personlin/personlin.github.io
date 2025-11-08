@@ -41,16 +41,16 @@
     footer { margin-top: 20px; color: var(--muted); font-size: 12px; text-align: center; }
     code { background:#f1f5f9; padding:2px 6px; border-radius:6px; }
   .logo-img{height:48px;width:auto;display:block}
+  @media (max-width: 480px){ header{align-items:flex-start;gap:12px} .logo-img{height:40px} h1{font-size:22px;line-height:1.25} .subtitle{font-size:13px} }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
       <header>
-        <img id="logo-zh" class="logo-img" src="A08%20%20標誌、標準字組合（簡稱左右組合）中.png" alt="中興工程顧問社 標誌" />
-        <img id="logo-en" class="logo-img" src="A08%20%20標誌、標準字組合（簡稱左右組合）英.png" alt="SINOTECH ENGINEERING CONSULTANTS, INC. logo" hidden />
+        <img id="logo" class="logo-img" src="A08%20%20標誌、標準字組合（簡稱左右組合）中.png" alt="Sinotech Logo" />
         <div>
-          <h1 id="name">林 柏 伸 · Po‑Shen Lin</h1>
+          <h1 id="name">林柏伸 · Po‑Shen Lin</h1>
           <p class="subtitle">財團法人中興工程顧問社｜防災科技研究中心 正研究員 · Senior Researcher, Disaster Prevention Technology Research Center</p>
         </div>
       </header>
@@ -102,8 +102,7 @@
     const enBtn = document.getElementById('btn-en');
     const zhPanel = document.getElementById('panel-zh');
     const enPanel = document.getElementById('panel-en');
-    const zhLogo = document.getElementById('logo-zh');
-    const enLogo = document.getElementById('logo-en');
+    const logoEl = document.getElementById('logo');
 
     function setLang(lang){
       const isZH = lang === 'zh';
@@ -111,10 +110,13 @@
       zhBtn.classList.toggle('active', isZH); zhBtn.setAttribute('aria-selected', isZH);
       enBtn.classList.toggle('active', !isZH); enBtn.setAttribute('aria-selected', !isZH);
       document.documentElement.lang = isZH ? 'zh-Hant' : 'en';
-      zhLogo.hidden = !isZH; enLogo.hidden = isZH;
+      logoEl.src = isZH ? 'A08%20%20標誌、標準字組合（簡稱左右組合）中.png' : 'A08%20%20標誌、標準字組合（簡稱左右組合）英.png';
+      logoEl.alt = isZH ? '中興工程顧問社 標誌' : 'SINOTECH ENGINEERING CONSULTANTS, INC. logo';
     }
     zhBtn.addEventListener('click', () => setLang('zh'));
     enBtn.addEventListener('click', () => setLang('en'));
+    // Ensure initial logo matches default language
+    document.addEventListener('DOMContentLoaded', ()=> setLang('zh'));
 
     // Build a vCard (VCF) on the fly to avoid extra files
     const vcard = [
