@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>林柏伸｜數位名片 Po‑Shen Lin – Digital Card</title>
+  <meta name="description" content="林柏伸（Po‑Shen Lin），財團法人中興工程顧問社 防災科技研究中心 正研究員。名片資訊與 vCard（VCF）下載。" />
+  <style>
+    :root {
+      --bg: #f8fafc;        /* slate-50 */
+      --panel: #ffffff;     /* white */
+      --text: #0f172a;      /* slate-900 */
+      --muted: #475569;     /* slate-600 */
+      --brand: #b91c1c;     /* red-700 (logo/強調) */
+      --accent: #0ea5e9;    /* sky-500 */
+      --ring: rgba(14,165,233,0.25);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans TC, "PingFang TC", "Microsoft JhengHei", sans-serif; color: var(--text); background: radial-gradient(1200px 800px at 80% -10%, #e0f2fe 0%, transparent 50%), var(--bg); }
+    .wrap { max-width: 960px; margin: 48px auto; padding: 0 16px; }
+    .card { background: var(--panel); border-radius: 24px; box-shadow: 0 10px 30px rgba(15,23,42,.08); padding: 28px; }
+    header { display:flex; align-items:center; gap:16px; margin-bottom: 8px; }
+    .logo { width: 44px; height: 44px; border-radius: 12px; display:grid; place-items:center; background: #fff5f5; color: var(--brand); font-weight: 900; border:1px solid #fee2e2; }
+    h1 { font-size: clamp(24px, 4vw, 32px); line-height: 1.2; margin: 0; }
+    .subtitle { color: var(--muted); margin: 6px 0 0; font-size: 14px; }
+    .lang { display:flex; gap:8px; margin: 18px 0 8px; }
+    .lang button { border: 1px solid #e2e8f0; background: #fff; color: var(--muted); padding: 8px 12px; border-radius: 999px; cursor: pointer; }
+    .lang button.active { color:#0c4a6e; border-color: var(--accent); box-shadow: 0 0 0 3px var(--ring); }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 760px){ .grid { grid-template-columns: 1.1fr .9fr; } }
+    .panel { border:1px solid #e2e8f0; border-radius: 18px; padding: 18px; }
+    .kv { display:grid; grid-template-columns: 120px 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px dashed #e2e8f0; }
+    .kv:last-child { border-bottom: 0; }
+    .key { color: var(--muted); }
+    .actions { display:flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .btn { display:inline-flex; align-items:center; gap:8px; padding: 10px 14px; border-radius: 12px; border:1px solid #e2e8f0; text-decoration: none; color: var(--text); background:#fff; }
+    .btn.primary { background: #e6f6ff; border-color:#bae6fd; }
+    .qr {
+      width: 100%; aspect-ratio: 1/1; background: conic-gradient(from 90deg, #e2e8f0, #f8fafc); border-radius: 12px; display:grid; place-items:center; color:#64748b; font-size:12px; border:1px dashed #cbd5e1;
+    }
+    footer { margin-top: 20px; color: var(--muted); font-size: 12px; text-align: center; }
+    code { background:#f1f5f9; padding:2px 6px; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="logo" aria-hidden="true">昌</div>
+        <div>
+          <h1 id="name">林 柏 伸 · Po‑Shen Lin</h1>
+          <p class="subtitle">財團法人中興工程顧問社｜防災科技研究中心 正研究員 · Senior Researcher, Disaster Prevention Technology Research Center</p>
+        </div>
+      </header>
+
+      <div class="lang" role="tablist" aria-label="Language selector">
+        <button id="btn-zh" class="active" role="tab" aria-selected="true">中文</button>
+        <button id="btn-en" role="tab" aria-selected="false">English</button>
+      </div>
+
+      <div class="grid">
+        <!-- Info Panel -->
+        <section class="panel" id="panel-zh" lang="zh-Hant" aria-labelledby="btn-zh">
+          <div class="kv"><div class="key">單位</div><div>財團法人中興工程顧問社（SINOTECH ENGINEERING CONSULTANTS, INC.）</div></div>
+          <div class="kv"><div class="key">部門 / 職稱</div><div>防災科技研究中心／正研究員</div></div>
+          <div class="kv"><div class="key">E‑mail</div><div><a href="mailto:person@sinotech.org.tw">person@sinotech.org.tw</a></div></div>
+          <div class="kv"><div class="key">電話</div><div>02‑8791‑9198 #317</div></div>
+          <div class="kv"><div class="key">傳真</div><div>+886‑2‑8791‑1536</div></div>
+          <div class="kv"><div class="key">地址</div><div>11494 台北市內湖區新湖二路 280 號</div></div>
+          <div class="kv"><div class="key">統一編號</div><div>11569326</div></div>
+          <div class="actions">
+            <a id="btn-vcf" class="btn primary" download="Po‑Shen_Lin.vcf" href="#">下載名片（VCF）</a>
+          </div>
+        </section>
+
+        <!-- English Panel -->
+        <section class="panel" id="panel-en" lang="en" aria-labelledby="btn-en" hidden>
+          <div class="kv"><div class="key">Organization</div><div>Sinotech Engineering Consultants</div></div>
+          <div class="kv"><div class="key">Department / Title</div><div>Disaster Prevention Technology Research Center / Senior Researcher</div></div>
+          <div class="kv"><div class="key">E‑mail</div><div><a href="mailto:person@sinotech.org.tw">person@sinotech.org.tw</a></div></div>
+          <div class="kv"><div class="key">Phone</div><div>+886‑2‑8791‑9198 ext. 317</div></div>
+          <div class="kv"><div class="key">Fax</div><div>+886‑2‑8791‑1536</div></div>
+          <div class="kv"><div class="key">Address</div><div>No. 280, Xinhu 2nd Rd., Neihu Dist., Taipei City 11494, Taiwan, R.O.C.<\/div><\/div>
+          <div class="kv"><div class="key">VAT / UBN</div><div>11569326</div></div>
+          <div class="actions">
+            <a id="btn-vcf-en" class="btn primary" download="Po‑Shen_Lin.vcf" href="#">Download vCard (VCF)</a>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        <div>© <span id="year"></span> Po‑Shen Lin · This is a single static HTML file suitable for GitHub Pages.</div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Language toggle
+    const zhBtn = document.getElementById('btn-zh');
+    const enBtn = document.getElementById('btn-en');
+    const zhPanel = document.getElementById('panel-zh');
+    const enPanel = document.getElementById('panel-en');
+
+    function setLang(lang){
+      const isZH = lang === 'zh';
+      zhPanel.hidden = !isZH; enPanel.hidden = isZH;
+      zhBtn.classList.toggle('active', isZH); zhBtn.setAttribute('aria-selected', isZH);
+      enBtn.classList.toggle('active', !isZH); enBtn.setAttribute('aria-selected', !isZH);
+      document.documentElement.lang = isZH ? 'zh-Hant' : 'en';
+    }
+    zhBtn.addEventListener('click', () => setLang('zh'));
+    enBtn.addEventListener('click', () => setLang('en'));
+
+    // Build a vCard (VCF) on the fly to avoid extra files
+    const vcard = [
+      'BEGIN:VCARD',
+      'VERSION:3.0',
+      'N:Lin;Po-Shen;;;',
+      'FN:Po-Shen Lin',
+      'NICKNAME:Person',
+      // Company (ORG) supports components: Company;Department
+      'ORG:財團法人中興工程顧問社;防災科技研究中心',
+      'ORG;LANGUAGE=en:SINOTECH ENGINEERING CONSULTANTS, INC.;Disaster Prevention Technology Research Center',
+      'TITLE:正研究員 \/ Senior Researcher',
+      'EMAIL;TYPE=INTERNET:person@sinotech.org.tw',
+      'TEL;TYPE=WORK,VOICE:+886-2-8791-9198;ext=317',
+      'TEL;TYPE=WORK,FAX:+886-2-8791-1536',
+      // ADR format: PO Box;Extended;Street;City;Region;Postal;Country
+      'ADR;TYPE=WORK:;;新湖二路280號;台北市內湖區;;11494;Taiwan, R.O.C.',
+      'ADR;TYPE=WORK;LANGUAGE=en:;;No. 280, Xinhu 2nd Rd.;Neihu Dist., Taipei City;;11494;Taiwan',
+      'NOTE:統一編號 11569326',
+      'END:VCARD'
+    ].join('\n');
+
+    function setVcfHref(a){
+      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      a.href = url;
+    }
+    setVcfHref(document.getElementById('btn-vcf'));
+    setVcfHref(document.getElementById('btn-vcf-en'));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
