@@ -40,13 +40,15 @@
     }
     footer { margin-top: 20px; color: var(--muted); font-size: 12px; text-align: center; }
     code { background:#f1f5f9; padding:2px 6px; border-radius:6px; }
+  .logo-img{height:48px;width:auto;display:block}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
       <header>
-        <div class="logo" aria-hidden="true">昌</div>
+        <img id="logo-zh" class="logo-img" src="A08%20%20標誌、標準字組合（簡稱左右組合）中.png" alt="中興工程顧問社 標誌" />
+        <img id="logo-en" class="logo-img" src="A08%20%20標誌、標準字組合（簡稱左右組合）英.png" alt="SINOTECH ENGINEERING CONSULTANTS, INC. logo" hidden />
         <div>
           <h1 id="name">林 柏 伸 · Po‑Shen Lin</h1>
           <p class="subtitle">財團法人中興工程顧問社｜防災科技研究中心 正研究員 · Senior Researcher, Disaster Prevention Technology Research Center</p>
@@ -75,7 +77,7 @@
 
         <!-- English Panel -->
         <section class="panel" id="panel-en" lang="en" aria-labelledby="btn-en" hidden>
-          <div class="kv"><div class="key">Organization</div><div>Sinotech Engineering Consultants</div></div>
+          <div class="kv"><div class="key">Organization</div><div>SINOTECH ENGINEERING CONSULTANTS, INC.</div></div>
           <div class="kv"><div class="key">Department / Title</div><div>Disaster Prevention Technology Research Center / Senior Researcher</div></div>
           <div class="kv"><div class="key">E‑mail</div><div><a href="mailto:person@sinotech.org.tw">person@sinotech.org.tw</a></div></div>
           <div class="kv"><div class="key">Phone</div><div>+886‑2‑8791‑9198 ext. 317</div></div>
@@ -100,6 +102,8 @@
     const enBtn = document.getElementById('btn-en');
     const zhPanel = document.getElementById('panel-zh');
     const enPanel = document.getElementById('panel-en');
+    const zhLogo = document.getElementById('logo-zh');
+    const enLogo = document.getElementById('logo-en');
 
     function setLang(lang){
       const isZH = lang === 'zh';
@@ -107,6 +111,7 @@
       zhBtn.classList.toggle('active', isZH); zhBtn.setAttribute('aria-selected', isZH);
       enBtn.classList.toggle('active', !isZH); enBtn.setAttribute('aria-selected', !isZH);
       document.documentElement.lang = isZH ? 'zh-Hant' : 'en';
+      zhLogo.hidden = !isZH; enLogo.hidden = isZH;
     }
     zhBtn.addEventListener('click', () => setLang('zh'));
     enBtn.addEventListener('click', () => setLang('en'));
@@ -127,7 +132,7 @@
       'TEL;TYPE=WORK,FAX:+886-2-8791-1536',
       // ADR format: PO Box;Extended;Street;City;Region;Postal;Country
       'ADR;TYPE=WORK:;;新湖二路280號;台北市內湖區;;11494;Taiwan, R.O.C.',
-      'ADR;TYPE=WORK;LANGUAGE=en:;;No. 280, Xinhu 2nd Rd.;Neihu Dist., Taipei City;;11494;Taiwan',
+      'ADR;TYPE=WORK;LANGUAGE=en:;;No. 280, Xinhu 2nd Rd.;Neihu Dist., Taipei City;;11494;Taiwan, R.O.C.',
       'NOTE:統一編號 11569326',
       'END:VCARD'
     ].join('\n');
